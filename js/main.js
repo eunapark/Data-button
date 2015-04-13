@@ -21,39 +21,23 @@
 		
 			});
 
-		var OneLineStops = subwayData.filter(function(subwayStation){
-			return _.contains(subwayStation.lineList, '1');
-		});
 
-		var TwoLineStops = subwayData.filter(function(subwayStation){
-			return _.contains(subwayStation.lineList, '2'); 
-		});
+		$('.button').on('click',function(){
+			$('#canvas').html ('');
 
-		var ThreeLineStops = subwayData.filter(function(subwayStation){
-			return _.contains(subwayStation.lineList, '3'); 
-		});
+			var selectedid = $(this).attr('id');
+			console.log(selectedid);
 
-		function showOne() {
-		OneLineStops.forEach(function(subwayStation){
-			$('#canvas').append('<div class="name">' + subwayStation.name  + '</div>' + subwayStation.lineList.join(' - ') + '</div>' + '</br>'); 
-		});
-	}
-
-		OneLineStops.forEach(function(subwayStation){
-			$('.OneLine').on('click', function(showOne){
-			console.log("one line stops");
+			var filteredlist = subwayData.filter(function(subwayStation){
+			return _.contains(subwayStation.lineList, selectedid); 
 			});
-		})
-		
-		// TwoLineStops.forEach(function(subwayStation){
-		// 	$('#canvas').append('<div class="name">' + subwayStation.name  + '</div>' + subwayStation.lineList.join(' - ') + '</div>' + '</br>');
-		// 	console.log("two line stops");
-		// });
 
-		// ThreeLineStops.forEach(function(subwayStation){
-		// 	$('#canvas').append('<div class="name">' + subwayStation.name  + '</div>' + subwayStation.lineList.join(' - ') + '</div>' + '</br>');
-		// 	console.log("three line stops");
-		// });
+			filteredlist.forEach(function(subwayStation){
+			$('#canvas').append('<div class="name">' + subwayStation.name  + '</div>' + subwayStation.lineList.join(' - ') + '</div>' + '</br>'); 
+			});
+
+		});
+
 	})
 
 }).call(this);
